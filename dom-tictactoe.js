@@ -35,9 +35,9 @@ const addMarker = (id) => {
   // .getElementById(id)
   // document
   // .innerHTML 
-  
   // Arrange the above pieces into a single line of code
   // to add an X or O to the board to the DOM so it can be scene on the screen.
+  document.getElementById(id).innerHTML = currentMarker;
 }
 
 // passes the element's id attribute from HTML to be used
@@ -51,6 +51,7 @@ const updateBoard = (id) => {
 
   // @TODO, Your code here: use the above information to change the board variable(array of arrays)
   // HINT: in your browser open up the dev tools -> console
+  board[row][column] = currentMarker
 }
 
 const checkForWin = () => {
@@ -63,17 +64,46 @@ const checkForWin = () => {
     changeMarker()
   }
 }
+// checkForWin()
 
 const horizontalWin = () => {
   // @TODO, Your code here: to check for horizontal wins
+  if((board[0][0] == "X" && board[0][1] == "X" && board[0][2] == "X") 
+  || (board[1][0] == "X" && board[1][1] == "X" && board[1][2] == "X")  
+  || (board[2][0] == "X" && board[2][1] == "X" && board[2][2] == "X") 
+  || (board[0][0] == "O" && board[0][1] == "O" && board[0][2] == "O")
+  || (board[1][0] == "O" && board[1][1] == "O" && board[1][2] == "O")  
+  || (board[2][0] == "O" && board[2][1] == "O" && board[2][2] == "O")
+  ) {
+    console.log("horizontal Win");
+    return true;
+} 
 }
 
 const verticalWin = () => {
   // @TODO, Your code here: to check for vertical wins
+  if((board[0][0] == "X" && board[1][0] == "X" && board[2][0] == "X") 
+  || (board[0][1] == "X" && board[1][1] == "X" && board[2][1] == "X")  
+  || (board[0][2] == "X" && board[1][2] == "X" && board[2][2] == "X") 
+  || (board[0][0] == "O" && board[1][0] == "O" && board[2][0] == "O")
+  || (board[0][1] == "O" && board[1][1] == "O" && board[2][1] == "O")  
+  || (board[0][2] == "O" && board[1][2] == "O" && board[2][2] == "O")  
+  ){
+    console.log("Vertical Win");
+  return true;
+ } 
 }
 
 const diagonalWin = () => {
   // @TODO, Your code here: to check for diagonal wins
+  if((board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X") 
+  || (board[0][2] == "X" && board[1][1] == "X" && board[2][0] == "X") 
+  || (board[0][0] == "O" && board[1][1] == "O" && board[2][2] == "O") 
+  || (board[0][2] == "O" && board[1][1] == "O" && board[2][0] == "O") 
+  ){
+    console.log("Diagonal Win");
+    return true;
+ }
 }
 
 const changeMarker = () => {
@@ -95,7 +125,13 @@ const resetBoard = () => {
   }
   
   // @TODO, Your code here: make sure to reset the array of arrays to empty for a new game
-}
+  board = [
+    ['','',''],
+    ['','',''],
+    ['','','']
+  ];
+} 
+ resetBoard()
 
 // **BONUSES**
 
